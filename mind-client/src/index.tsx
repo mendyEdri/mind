@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
-import ApolloProvider from './ApolloProvider';
+import ApolloProvider from './Config/ApolloProvider';
 
 ReactDOM.render(
   <ApolloProvider />,

@@ -9,11 +9,6 @@ const {
 const { SECRET_KEY } = require("../../config");
 const User = require("../../models/User");
 
-const isUserAlreadyRegister = async (username) => {
-  const user = await User.findOne({ username });
-  return !!user;
-};
-
 const generateToken = (user) => {
   return jwt.sign(
     {
@@ -64,12 +59,14 @@ const register = async (
     password,
     confirmPassword
   );
+
   if (!valid) {
     throw new UserInputError("Errors", { errors });
   }
 
   // Make sure user doesn't already exist
-  if (await isUserAlreadyRegister(username)) {
+  const user = await User.findOne({ username });
+  if (user) {
     throw new UserInputError("username is taken", {
       errors: { username: "This username is taken" },
     });

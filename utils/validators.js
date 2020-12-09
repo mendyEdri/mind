@@ -1,15 +1,15 @@
 const isErrorObjectIsEmpty = (errors) => {
-  return Object.keys(errors).keys.length < 1
+  return Object.keys(errors).length === 0
 }
 
 const validateRegisterInput = (username, email, password, confirmPassword) => {
   const errors = {};
-  if (username.trim() === "") {
+  if (username.trim() === '') {
     errors.username = "Username must not be empty";
   }
   
-  if (email.trim() === "") {
-    errors.username = "Email must not be empty";
+  if (email.trim() === '') {
+    errors.email = "Email must not be empty";
   } else {
     const regEx = /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/;
     if (!email.match(regEx)) {
@@ -17,7 +17,7 @@ const validateRegisterInput = (username, email, password, confirmPassword) => {
     }
   }
   
-  if (password === "") {
+  if (password === '') {
     errors.password = "Password must not be empty";
   } else if (password !== confirmPassword) {
     errors.confirmPassword = "Password must match";
